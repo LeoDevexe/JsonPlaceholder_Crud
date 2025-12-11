@@ -14,7 +14,7 @@ export class JsonPlaceholderPostRepository implements PostRepository {
   private readonly CREATED_POSTS_KEY = 'created_posts';
   private readonly UPDATED_POSTS_KEY = 'updated_posts';
   private readonly DELETED_POSTS_KEY = 'deleted_posts';
-  private nextTempId = 10001; // IDs temporales para posts creados
+  private nextTempId = 101; // IDs temporales para posts creados
 
   constructor(private readonly httpClient: HttpClient) {
     this.storage = new LocalStorageAdapter();
@@ -212,8 +212,8 @@ export class JsonPlaceholderPostRepository implements PostRepository {
     const { id, ...postWithoutId } = postDto;
 
     // Llamar a la API (aunque no persista realmente)
-    // Solo para posts que vienen de la API (id < 10000)
-    if (id < 10000) {
+    // Solo para posts que vienen de la API (id < 100)
+    if (id < 100) {
       try {
         await this.httpClient.put<unknown>(
           `${API_ENDPOINTS.POSTS}/${id}`,
@@ -248,8 +248,8 @@ export class JsonPlaceholderPostRepository implements PostRepository {
       return;
     }
 
-    // Llamar a la API solo para posts que vienen de la API (id < 10000)
-    if (id < 10000) {
+    // Llamar a la API solo para posts que vienen de la API (id < 100)
+    if (id < 100) {
       try {
         await this.httpClient.delete(`${API_ENDPOINTS.POSTS}/${id}`);
       } catch (error) {

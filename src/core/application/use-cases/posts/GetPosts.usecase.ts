@@ -1,8 +1,13 @@
 import { Post } from '@domain/entities';
 import { PostRepository } from '@domain/repositories';
-import { Pagination, SortCriteria, FilterCriteria as FilterCriteriaVO } from '@domain/value-objects';
+import {
+  Pagination,
+  SortCriteria,
+  FilterCriteria as FilterCriteriaVO,
+} from '@domain/value-objects';
 import { PaginatedResponse, SortParams } from '@shared/types';
 import { FilterCriteria } from '@shared/types/filter.types';
+import { SortDirection } from '@shared/enums';
 
 export class GetPostsUseCase {
   constructor(private readonly postRepository: PostRepository) {}
@@ -16,7 +21,7 @@ export class GetPostsUseCase {
     const pagination = Pagination.create(page, limit);
 
     const sortCriteria = sort
-      ? SortCriteria.create(sort.field, sort.direction as 'asc' | 'desc')
+      ? SortCriteria.create(sort.field, sort.direction as SortDirection)
       : undefined;
 
     const filterCriteria = filters?.map(filter =>
@@ -26,4 +31,3 @@ export class GetPostsUseCase {
     return await this.postRepository.findAll(pagination, sortCriteria, filterCriteria);
   }
 }
-

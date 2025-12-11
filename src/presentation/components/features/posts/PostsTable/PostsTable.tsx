@@ -134,7 +134,7 @@ export const PostsTable = () => {
   };
 
   const isLocalPost = (id: number): boolean => {
-    return id >= 10000;
+    return id >= 100;
   };
 
   const getSortDirection = (field: SortField): 'asc' | 'desc' | undefined => {

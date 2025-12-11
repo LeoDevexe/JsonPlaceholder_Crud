@@ -7,7 +7,7 @@ export class UserService implements UserServiceInputPort {
   private readonly getUsersUseCase: GetUsersUseCase;
   private readonly getUserByIdUseCase: GetUserByIdUseCase;
 
-  constructor(private readonly userRepository: UserRepository) {
+  constructor(userRepository: UserRepository) {
     this.getUsersUseCase = new GetUsersUseCase(userRepository);
     this.getUserByIdUseCase = new GetUserByIdUseCase(userRepository);
   }
@@ -20,4 +20,3 @@ export class UserService implements UserServiceInputPort {
     return await this.getUserByIdUseCase.execute(id);
   }
 }
-

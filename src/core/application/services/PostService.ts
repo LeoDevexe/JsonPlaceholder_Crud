@@ -18,7 +18,7 @@ export class PostService implements PostServiceInputPort {
   private readonly updatePostUseCase: UpdatePostUseCase;
   private readonly deletePostUseCase: DeletePostUseCase;
 
-  constructor(private readonly postRepository: PostRepository) {
+  constructor(postRepository: PostRepository) {
     this.getPostsUseCase = new GetPostsUseCase(postRepository);
     this.getPostByIdUseCase = new GetPostByIdUseCase(postRepository);
     this.createPostUseCase = new CreatePostUseCase(postRepository);
@@ -51,4 +51,3 @@ export class PostService implements PostServiceInputPort {
     return await this.deletePostUseCase.execute(id);
   }
 }
-

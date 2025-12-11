@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 import { Post, CreatePostDto, UpdatePostDto } from '@domain/entities';
-import { PaginatedResponse, SortParams } from '@shared/types';
+import { SortParams } from '@shared/types';
 import { FilterCriteria } from '@shared/types/filter.types';
 
 export interface PostContextValue {
@@ -29,4 +29,3 @@ export interface PostContextValue {
 }
 
 export const PostContext = createContext<PostContextValue | undefined>(undefined);
-
